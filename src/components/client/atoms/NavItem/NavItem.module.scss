@@ -1,0 +1,38 @@
+.navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 10px;
+    width: 100%;
+    min-width: 110px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border-radius: 16px; 
+
+&:hover {
+    background-color: #6F87FB;
+}
+
+    &.active {
+    background-color: #6F87FB;
+    
+    .label {
+        opacity: 1;
+        font-weight: 700;
+        }
+    }
+}
+
+.label {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase; // Para "INICIO" y "CREAR TICKET"
+    text-align: center;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
