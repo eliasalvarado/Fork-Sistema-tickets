@@ -1,5 +1,5 @@
 .tableRow {
-  --row-scale: 1; // Valor base por si no se pasa el prop
+  --row-scale: 1;
   display: grid;
   align-items: center;
   background-color: #FFFFFF;
@@ -13,9 +13,8 @@
     
     .cell {
       border-right: 1px solid #D0D7DE;
-      // Base 8px 12px escalada
       padding: calc(8px * var(--row-scale)) calc(12px * var(--row-scale)); 
-      min-height: calc(40px * var(--row-scale)); 
+      min-height: calc(25px * var(--row-scale)); 
     }
   }
 }
@@ -25,9 +24,8 @@
   display: flex;
   align-items: center; 
   min-height: calc(48px * var(--row-scale));
-  overflow: hidden;
+  overflow: hidden; 
 
-  // Clases de alineación
   &.left { 
     justify-content: flex-start; 
     text-align: left; 
@@ -35,7 +33,7 @@
   &.center { 
     justify-content: center; 
     text-align: center;
-    .headerContent { justify-content: center; } // Centra también el grupo icono+texto
+    .headerContent { justify-content: center; }
   }
   &.right { 
     justify-content: flex-end; 
@@ -46,7 +44,7 @@
 
 .headerLabel {
   font-weight: 600;
-  font-size: calc(12px * var(--row-scale)); // Texto escalado
+  font-size: calc(12px * var(--row-scale));
   margin: 0;
 }
 
@@ -64,12 +62,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: calc(8px * var(--row-scale)); // Gap escalado
+  gap: calc(8px * var(--row-scale)); 
   white-space: nowrap;
   width: 100%;
 }
 
-// Estilos de diseño escalados
 .userMenu {
     display: flex;
     align-items: center;
