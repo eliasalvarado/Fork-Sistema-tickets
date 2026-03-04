@@ -1,9 +1,10 @@
 .tableRow {
   --row-scale: 1;
   display: grid;
-  align-items: center;
+  align-items: stretch;
   background-color: #FFFFFF;
   width: 100%;
+
   border-bottom: 1px solid #E0E0E0;
 
   &.header {
@@ -76,12 +77,11 @@
 
 .rowContent {
   width: 100%;
-  font-size: calc(13px * var(--row-scale)); 
-  
+  font-size: calc(13px * var(--row-scale));
+  background-color: "red";
   :global(.text) { 
     font-size: calc(13px * var(--row-scale)) !important;
   }
-  
 }
 
 .headerContent {
@@ -114,4 +114,63 @@
 .checkbox {
   width: 15px;
   height: 15px;
+}
+
+.permission {
+  // Las filas de permisos suelen ser más altas por la descripción
+  &:not(.header) {
+    min-height: calc(80px * var(--row-scale));
+  }
+
+  &.header {
+    background-color: #FFFFFF; // Fondo blanco para headers de módulo
+    border: 1px solid #E0E0E0;
+    
+    .checkboxCell {
+        background-color: transparent;
+    }
+  }
+}
+
+// Contenedor para el Nombre y Descripción del permiso
+.permissionInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .rowContent {
+    white-space: normal; // Permitimos que la descripción baje a la siguiente línea
+    justify-content: center;
+  }
+}
+
+.checkboxCell {
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  .checkboxCell {
+    border-right: none !important;
+  }
+}
+
+.storieP {
+    font-size: 13px;
+    margin: 0;
+}
+
+.tablePermissionInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    height: 100%;
+    background-color: "red";
+}
+
+.rowContentExample {
+    height: 100%;
 }
