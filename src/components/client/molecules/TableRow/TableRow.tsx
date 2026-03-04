@@ -16,7 +16,8 @@ export const TableRow = ({
     onSelect,
     id,
     variant = "default",
-    className 
+    className,
+    rowContentClassName
 }: TableRowProps) => {
 
     // Lógica de Grid para la variante de permisos
@@ -71,7 +72,9 @@ export const TableRow = ({
                             <Text variant="body" className={styles.headerLabel}>{cell.label}</Text>
                         </div>
                     ) : (
-                        <div className={styles.rowContent}>{cell.content}</div>
+                        <div className={classNames(styles.rowContent, rowContentClassName)}>
+                            {cell.content}
+                        </div>
                     )}
                 </div>
             ))}

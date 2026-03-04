@@ -18,4 +18,5 @@ export interface TableRowProps {
     onSelect?: (checked: boolean) => void;
     variant?: "default" | "permission"; 
     id?: string | number;
+    rowContentClassName?: string;
 }

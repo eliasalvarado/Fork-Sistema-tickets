@@ -263,12 +263,13 @@ export const PermissionsTableExample: Story = {
                         selectable
                         isSelected={selectedRows.includes(id)}
                         onSelect={(checked) => handleSelectRow(id, checked)}
-                        scale={1}
+                        scale={0.8}
                         gridTemplate=""
+                        rowContentClassName={styles.rowContentExample}
                         cells={[
                             { 
                                 content: (
-                                    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: "center" }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'center' }}>
                                         <Text variant="body" className={styles.storieP}>Nombre del permiso</Text>
                                         <Text variant="muted" className={styles.storieP}>Descripcion del permiso si es demasiado largo debera ser cortada</Text>
                                     </div>

@@ -21,6 +21,7 @@ export const PermissionToggle = ({
                 id={id || `perm-${label.replace(/\s+/g, '-').toLowerCase()}`}
                 checked={checked}
                 onChange={(e) => onChange?.(e.target.checked)}
+                switchSize={"small"}
             />
         </div>
     );

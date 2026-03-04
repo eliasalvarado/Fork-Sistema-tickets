@@ -4,6 +4,7 @@
   align-items: stretch;
   background-color: #FFFFFF;
   width: 100%;
+
   border-bottom: 1px solid #E0E0E0;
 
   &.header {
@@ -76,13 +77,11 @@
 
 .rowContent {
   width: 100%;
-  height: 100%;
-  font-size: calc(13px * var(--row-scale)); 
-  
+  font-size: calc(13px * var(--row-scale));
+  background-color: "red";
   :global(.text) { 
     font-size: calc(13px * var(--row-scale)) !important;
   }
-  
 }
 
 .headerContent {
@@ -141,7 +140,6 @@
 
   .rowContent {
     white-space: normal; // Permitimos que la descripción baje a la siguiente línea
-    height: 100%;
     justify-content: center;
   }
 }
@@ -160,6 +158,19 @@
 }
 
 .storieP {
-    font-size: calc(13px * var(--row-scale));
+    font-size: 13px;
     margin: 0;
+}
+
+.tablePermissionInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    height: 100%;
+    background-color: "red";
+}
+
+.rowContentExample {
+    height: 100%;
 }
