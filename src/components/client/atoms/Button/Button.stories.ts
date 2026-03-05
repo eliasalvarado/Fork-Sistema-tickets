@@ -16,7 +16,7 @@ const meta = {
     },
     color: {
       control: "select",
-      options: ["success", "danger", "default"],
+      options: ["success", "danger", "default", "cancel", "neutral-light"],
       description: "Color del botón",
     },
     rounded: {
@@ -71,6 +71,14 @@ export const ContainedCancel: Story = {
     variant: "contained",
     color: "cancel",
     children: "Button Cancel",
+  },
+};
+
+export const ContainedNeutralLight: Story = {
+  args: {
+    variant: "contained",
+    color: "neutral-light",
+    children: "Button Neutral Light",
   },
 };
 
@@ -138,6 +146,14 @@ export const OutlinedCancel: Story = {
   },
 };
 
+export const OutlinedNeutralLight: Story = {
+  args: {
+    variant: "outlined",
+    color: "neutral-light",
+    children: "Button Neutral Light",
+  },
+};
+
 export const OutlinedDefault: Story = {
   args: {
     variant: "outlined",
@@ -199,6 +215,14 @@ export const TextCancel: Story = {
     variant: "text",
     color: "cancel",
     children: "Button Cancel",
+  },
+};
+
+export const TextNeutralLight: Story = {
+  args: {
+    variant: "text",
+    color: "neutral-light",
+    children: "Button Neutral Light",
   },
 };
 

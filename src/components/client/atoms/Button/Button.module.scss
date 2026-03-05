@@ -80,6 +80,19 @@
         background-color: color.adjust($negro-1, $lightness: -30%);
       }
     }
+
+    &.Button--neutral-light {
+      background-color: #D3D3D366;
+      color: $negro-1;
+
+      &:hover:not(.Button--disabled):not(.Button--loading) {
+        background-color: #D3D3D388;
+      }
+
+      &:active:not(.Button--disabled):not(.Button--loading) {
+        background-color: #D3D3D3AA;
+      }
+    }
   }
 
   // Outlined (con borde)

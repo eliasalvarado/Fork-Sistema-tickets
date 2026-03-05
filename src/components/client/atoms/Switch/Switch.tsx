@@ -30,7 +30,7 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 
     // Dimensiones predefinidas para cada tamaño
     const sizeConfig = {
-      small: { width: 40, height: 20, sliderSize: 17, padding: 2 },
+      small: { width: 40, height: 20, sliderSize: 16, padding: 2 },
       medium: { width: 50, height: 26, sliderSize: 20, padding: 3 },
       large: { width: 62, height: 32, sliderSize: 26, padding: 3 },
     };
