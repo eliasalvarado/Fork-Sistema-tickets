@@ -9,7 +9,7 @@ export type ButtonVariant = "contained" | "outlined" | "text";
 /**
  * Color del botón.
  */
-export type ButtonColor = "success" | "danger" | "cancel" | "default";
+export type ButtonColor = "success" | "danger" | "cancel" | "default" | "neutral-light";
 
 /**
  * Estado del botón.
