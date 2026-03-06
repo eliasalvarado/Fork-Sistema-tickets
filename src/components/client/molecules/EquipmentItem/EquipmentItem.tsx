@@ -18,7 +18,7 @@ export const EquipmentItem = ({
                 <Icon 
                     name={iconName} 
                     size={32} 
-                    color={iconColor} // Aplicamos el color dinámico
+                    color={iconColor}
                 />
             </div>
             <div className={styles.infoContainer}>
