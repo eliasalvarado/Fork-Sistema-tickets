@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { MaintenanceCard } from "./index";
+import { MaintenanceRecordPanel } from "./MaintenanceRecordPanel";
 
-const meta: Meta<typeof MaintenanceCard> = {
-    title: "Organisms/MaintenanceCard",
-    component: MaintenanceCard,
+const meta: Meta<typeof MaintenanceRecordPanel> = {
+    title: "Organisms/MaintenanceRecordPanel",
+    component: MaintenanceRecordPanel,
 };
 
 export default meta;

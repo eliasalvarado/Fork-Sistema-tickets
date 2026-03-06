@@ -1,17 +1,16 @@
-import React from "react";
-import { MaintenanceCardProps } from "./types";
+import { MaintenanceRecordPanelProps } from "./types";
 import { Text } from "../../atoms/Text";
 import { Icon } from "../../atoms/Icon";
-import styles from "./MaintenanceCard.module.scss";
+import styles from "./MaintenanceRecordPanel.module.scss";
 import classNames from "classnames";
 import { Title } from "../../atoms/Title";
 
-export const MaintenanceCard = ({
+export const MaintenanceRecordPanel = ({
     lastMaintenance,
     nextMaintenance,
     observations,
     className
-}: MaintenanceCardProps) => {
+}: MaintenanceRecordPanelProps) => {
     return (
         <div className={classNames(styles.card, className)}>
             <Title className={styles.title}>
@@ -19,7 +18,6 @@ export const MaintenanceCard = ({
             </Title>
 
             <div className={styles.records}>
-                {/* Fila: Último Mantenimiento */}
                 <div className={styles.row}>
                     <Text variant="body" className={styles.label}>
                         Ultimo Mantenimiento:
@@ -29,8 +27,6 @@ export const MaintenanceCard = ({
                         <Text variant="muted">{lastMaintenance}</Text>
                     </div>
                 </div>
-
-                {/* Fila: Próximo Mantenimiento */}
                 <div className={styles.row}>
                     <Text variant="body" className={styles.label}>
                         Proximo Mantenimiento:
@@ -54,4 +50,4 @@ export const MaintenanceCard = ({
     );
 };
 
-export default MaintenanceCard;
+export default MaintenanceRecordPanel;
