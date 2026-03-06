@@ -30,6 +30,7 @@ export const Avatar = ({
     ringed, 
     status,
     className 
+    
 }: AvatarProps) => {
 
     // Generamos el color base una sola vez para usarlo en fondo y borde
