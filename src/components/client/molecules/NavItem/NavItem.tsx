@@ -25,7 +25,7 @@ export const NavItem = ({
                 name={iconName} 
                 variant="navigation" 
                 active={active}
-                size={32}
+                size={25}
             />
             <Text variant="navLabel">
                 {label}
