@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 /**
  * Representa un miembro que puede ser seleccionado
  */
@@ -38,14 +40,32 @@ export interface MemberSelectProps {
   selectedId?: string | number;
 
   /**
-   * Callback ejecutado cuando se selecciona un miembro
+   * Callback ejecutado cuando se selecciona o deselecciona un miembro
+   * Si se pasa undefined, significa que se deseleccionó
    */
-  onSelect?: (member: Member) => void;
+  onSelect?: (member: Member | undefined) => void;
 
   /**
    * Placeholder cuando no hay selección
    */
   placeholder?: string;
+
+  /**
+   * Trigger personalizado para abrir el dropdown
+   * Si se proporciona, reemplaza el trigger por defecto
+   */
+  children?: ReactNode;
+
+  /**
+   * Control externo del estado abierto/cerrado
+   * Si se proporciona, el componente se vuelve controlado
+   */
+  isOpen?: boolean;
+
+  /**
+   * Callback cuando cambia el estado abierto/cerrado
+   */
+  onOpenChange?: (isOpen: boolean) => void;
 
   /**
    * Clase CSS adicional para el contenedor
