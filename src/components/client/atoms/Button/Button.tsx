@@ -57,9 +57,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           loadingText
         ) : (
           <>
-            {icon && left && <Icon name={icon} variant="action" size={20} />}
+            {icon && left && <Icon name={icon} variant="status" size={20} />}
             {children}
-            {icon && !left && <Icon name={icon} variant="action" size={20} />}
+            {icon && !left && <Icon name={icon} variant="status" size={20} />}
           </>
         )}
       </button>

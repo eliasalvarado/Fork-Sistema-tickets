@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { Avatar } from "../../atoms/Avatar";
 import { Text } from "../../atoms/Text";
@@ -18,10 +18,28 @@ export const MemberSelect: React.FC<MemberSelectProps> = ({
   selectedId,
   onSelect,
   placeholder = "Seleccionar miembro",
+  children,
+  isOpen: isOpenProp,
+  onOpenChange,
   className,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenInternal, setIsOpenInternal] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Determinar si es controlado o no controlado
+  const isControlled = isOpenProp !== undefined;
+  const isOpen = isControlled ? isOpenProp : isOpenInternal;
+
+  // Función para cambiar el estado
+  const setIsOpen = useCallback(
+    (newValue: boolean) => {
+      if (!isControlled) {
+        setIsOpenInternal(newValue);
+      }
+      onOpenChange?.(newValue);
+    },
+    [isControlled, onOpenChange]
+  );
 
   // Encontrar el miembro seleccionado
   const selectedMember = members.find((member) => member.id === selectedId);
@@ -41,43 +59,52 @@ export const MemberSelect: React.FC<MemberSelectProps> = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
   const handleSelect = (member: typeof members[0]) => {
-    onSelect?.(member);
+    // Si el miembro clickeado ya está seleccionado, deseleccionar
+    if (member.id === selectedId) {
+      onSelect?.(undefined);
+    } else {
+      onSelect?.(member);
+    }
     setIsOpen(false);
   };
 
   return (
     <div className={classNames(styles.MemberSelect, className)} ref={containerRef}>
-      {/* Botón/Trigger del select */}
-      <button
-        type="button"
-        className={classNames(styles.trigger, { [styles.open]: isOpen })}
-        onClick={handleToggle}
-      >
-        {selectedMember ? (
-          <>
-            <Avatar
-              src={selectedMember.avatarSrc}
-              initials={selectedMember.initials}
-              size="sm"
-              className={styles.avatar}
-            />
-            <Text variant="body" className={styles.memberName}>
-              {selectedMember.name}
+      {/* Trigger personalizado o por defecto */}
+      {children ? (
+        <div onClick={handleToggle}>{children}</div>
+      ) : (
+        <button
+          type="button"
+          className={classNames(styles.trigger, { [styles.open]: isOpen })}
+          onClick={handleToggle}
+        >
+          {selectedMember ? (
+            <>
+              <Avatar
+                src={selectedMember.avatarSrc}
+                initials={selectedMember.initials}
+                size="sm"
+                className={styles.avatar}
+              />
+              <Text variant="body" className={styles.memberName}>
+                {selectedMember.name}
+              </Text>
+            </>
+          ) : (
+            <Text variant="muted" className={styles.placeholder}>
+              {placeholder}
             </Text>
-          </>
-        ) : (
-          <Text variant="muted" className={styles.placeholder}>
-            {placeholder}
-          </Text>
-        )}
-      </button>
+          )}
+        </button>
+      )}
 
       {/* Dropdown con la lista de miembros */}
       {isOpen && (
