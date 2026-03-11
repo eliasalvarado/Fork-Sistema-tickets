@@ -1,5 +1,4 @@
 "use client";
-
 import classNames from "classnames";
 import styles from "./SearchField.module.scss";
 import { SearchFieldProps } from "./types";
@@ -29,7 +28,7 @@ const SearchField: React.FC<SearchFieldProps> = ({
                     className={styles.input}
                 />
 
-                <IconButton icon="magnifying-glass-solid" type="submit" className={styles.searchButton}/>
+                <IconButton icon="magnifying-glass-solid" borderless type="submit" className={styles.searchButton}/>
             </div>
         </form>
     );
