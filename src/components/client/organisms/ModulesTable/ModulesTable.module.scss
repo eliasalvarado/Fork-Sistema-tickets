@@ -1,0 +1,15 @@
+.ModulesTable {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+}
