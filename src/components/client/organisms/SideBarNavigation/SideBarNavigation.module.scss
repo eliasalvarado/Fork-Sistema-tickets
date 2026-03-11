@@ -4,9 +4,10 @@
     background-color: #4361EE;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    left: 0;
-    top: 0;
+    // position: fixed;
+    // left: 0;
+    // top: 0;
+    flex-shrink: 0;
 }
 
 .logoSection {
