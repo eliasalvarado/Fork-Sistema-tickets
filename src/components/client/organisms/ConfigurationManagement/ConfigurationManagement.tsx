@@ -13,10 +13,23 @@ import { EnrollTable } from "../EnrollTable";
 
 const ConfigurationManagement: React.FC<ConfigurationManagementProps> = ({
     requests,
+    onRequestApproveAll,
+    onRequestApprove,
     modules,
+    onModulesSubmit,
+    onModulesEdit,
+    onModulesDelete,
     permissions,
+    onPermissionsSubmit,
+    onPermissionsEdit,
+    onPermissionsDelete,
     roles,
+    onRolesSubmit,
+    onRolesEdit,
+    onRolesDelete,
     enrolls,
+    onEnrollApproveAll,
+    onEnrollApprove,
     className
 }) => {
 
@@ -25,15 +38,50 @@ const ConfigurationManagement: React.FC<ConfigurationManagementProps> = ({
     const renderView = () => {
         switch (view) {
             case "requests":
-                return <RequestTable requests={requests} onApprove={(select) => alert(select)} />;
+                return (
+                    <RequestTable 
+                        requests={requests} 
+                        onApproveAll={onRequestApproveAll} 
+                        onApprove={onRequestApprove} 
+                    />
+                )
             case "modules":
-                return <ModulesTable modules={modules} />;
+                return (
+                    <ModulesTable 
+                        modules={modules} 
+                        onSubmit={onModulesSubmit} 
+                        onEdit={onModulesEdit} 
+                        onDelete={onModulesDelete}
+                    />
+                )
             case "permissions":
-                return <PermissionsTable permissions={permissions}/>;
+                return (
+                    <PermissionsTable 
+                        permissions={permissions}
+                        modules={modules}
+                        onSubmit={onPermissionsSubmit}
+                        onEdit={onPermissionsEdit}
+                        onDelete={onPermissionsDelete}
+                    />
+                )
             case "roles":
-                return <RolesTable roles={roles} />;
+                return (
+                    <RolesTable 
+                        roles={roles} 
+                        permissions={permissions}
+                        onSubmit={onRolesSubmit}
+                        onEdit={onRolesEdit}
+                        onDelete={onRolesDelete}
+                    />
+                )
             case "enroll":
-                return <EnrollTable enroll={enrolls} />;
+                return (
+                    <EnrollTable 
+                        enroll={enrolls} 
+                        onApproveAll={onEnrollApproveAll}
+                        onApprove={onEnrollApprove}
+                    />
+                )
             
         }
     };

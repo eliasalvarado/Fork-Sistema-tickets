@@ -14,6 +14,7 @@ const GRID = "minmax(0, 1.8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.8fr) mi
 
 const RequestTable: React.FC<RequestTableProps> = ({
     requests,
+    onApproveAll,
     onApprove,
     className
 }) => {
@@ -32,8 +33,12 @@ const RequestTable: React.FC<RequestTableProps> = ({
         );
     };
 
-    const handleApprove = () => {
-        onApprove?.(selected);
+    const handleApproveAll = () => {
+        onApproveAll?.(selected);
+    };
+
+    const handleApprove = (id: number) => {
+        onApprove?.(id)
     };
 
     return (
@@ -46,7 +51,7 @@ const RequestTable: React.FC<RequestTableProps> = ({
                     label="Solicitudes pendientes"
                 />
 
-                <Button onClick={handleApprove}>
+                <Button onClick={handleApproveAll}>
                     Aprobar y notificar
                 </Button>
 
@@ -101,7 +106,16 @@ const RequestTable: React.FC<RequestTableProps> = ({
                                 ),
                                 align: "center"
                             },
-                            { content: <IconButton icon="paper-plane-solid" />, align: "center"}
+                            { 
+                                content: (
+                                    <IconButton 
+                                        icon="paper-plane-solid"
+                                        iconColor="#8A8A8A"
+                                        onClick={() => handleApprove(req.id)}  
+                                    />
+                                ),
+                                align: "center"
+                            }
                         ]}
                     />
                 ))}

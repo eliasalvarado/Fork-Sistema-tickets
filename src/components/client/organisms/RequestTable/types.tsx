@@ -10,6 +10,7 @@ export interface Request {
 
 export interface RequestTableProps {
     requests: Request[];
-    onApprove?: (ids: number[]) => void;
+    onApproveAll?: (ids: number[]) => void;
+    onApprove?: (id: number) => void;
     className?: string;
 };

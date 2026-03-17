@@ -62,10 +62,23 @@ const Configuration: React.FC = () => {
             <div className={styles.configContainer}>
                 <ConfigurationManagement 
                     requests={requests}
+                    onRequestApproveAll={(data) => alert(data)}
+                    onRequestApprove={(data) => alert(data)}
                     modules={modules}
+                    onModulesSubmit={(data) => console.log(data)}
+                    onModulesEdit={(data) => console.log(data)}
+                    onModulesDelete={(data) => alert(data)}
                     permissions={permissions}
+                    onPermissionsSubmit={(data) => console.log(data)}
+                    onPermissionsEdit={(data) => console.log(data)}
+                    onPermissionsDelete={(data) => alert(data)}
                     roles={roles}
+                    onRolesSubmit={(data) => console.log(data)}
+                    onRolesEdit={(data) => console.log(data)}
+                    onRolesDelete={(data) => alert(data)}
                     enrolls={enrolls}
+                    onEnrollApproveAll={(data) => alert(data)}
+                    onEnrollApprove={(data) => alert(data)}
                 />
             </div>
         </div>

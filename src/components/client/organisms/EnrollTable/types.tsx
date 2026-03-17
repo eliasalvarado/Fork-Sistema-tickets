@@ -9,6 +9,7 @@ export interface Enroll {
 
 export interface EnrollTableProps {
     enroll: Enroll[];
-    onApprove?: (ids: number[]) => void;
+    onApprove?: (id: number) => void;
+    onApproveAll?: (ids: number[]) => void;
     className?: string;
 };

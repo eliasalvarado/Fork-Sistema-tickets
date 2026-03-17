@@ -57,12 +57,24 @@ export async function getPermissionsDummy(): Promise<Permissions[]> {
                 {
                     id: 1,
                     name: 'Permiso 1',
-                    status: 'Activo'
+                    code: 'PERM1',
+                    module: 1,
+                    status: 'Activo',
+                    ver: true,
+                    grabar: true,
+                    editar: false,
+                    eliminar: true
                 },
                 {
                     id: 2,
                     name: 'Permiso 2',
-                    status: 'Baja'
+                    code: 'PERM2',
+                    module: 2,
+                    status: 'Baja',
+                    ver: true,
+                    grabar: false,
+                    editar: true,
+                    eliminar: false
                 }
             ])
         },900)
@@ -78,14 +90,52 @@ export async function getRolesDummy(): Promise<Roles[]> {
                     name: 'Administrador del sistema',
                     code: '0001',
                     roleCode: 'GRPADMIN',
-                    status: 'Activo'
+                    description: 'Descripcion 1',
+                    status: 'Activo',
+                    permissions: [
+                        {
+                            id: 1,
+                            name: 'Permiso 1',
+                            code: 'PERM1',
+                            module: 1,
+                            status: 'Activo',
+                            ver: true,
+                            grabar: true,
+                            editar: true,
+                            eliminar: true
+                        }
+                    ]
                 },
                 {
                     id: 2,
                     name: 'Usuario regular',
                     code: '0002',
                     roleCode: 'GRPREGULAR',
-                    status: 'Baja'
+                    status: 'Baja',
+                    permissions: [
+                        {
+                            id: 1,
+                            name: 'Permiso 1',
+                            code: 'PERM1',
+                            module: 1,
+                            status: 'Activo',
+                            ver: true,
+                            grabar: false,
+                            editar: false,
+                            eliminar: false
+                        },
+                        {
+                            id: 2,
+                            name: 'Permiso 2',
+                            code: 'PERM2',
+                            module: 2,
+                            status: 'Baja',
+                            ver: true,
+                            grabar: false,
+                            editar: true,
+                            eliminar: true
+                        }
+                    ]
                 }
             ])
         },900)
