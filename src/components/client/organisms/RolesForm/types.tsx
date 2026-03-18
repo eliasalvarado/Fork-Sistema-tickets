@@ -1,16 +1,10 @@
-export interface Permissions {
-    id: number;
-    name: string;
-    description: string;
-    grabar: boolean;
-    editar: boolean;
-    eliminar: boolean;
-    ver: boolean;
-}
+import { Permissions } from "../PermissionsTable/types";
+import { Roles } from "../RolesTable/types";
 
 export interface RolesFormProps {
     permissions: Permissions[];
-    onSubmit?: () => void;
+    initialData?: Roles | null;
+    onSubmit?: (data: {name: string; description: string; code: string; permissions: Permissions[]}) => void;
     onCancel?: () => void;
     className?: string;
 };

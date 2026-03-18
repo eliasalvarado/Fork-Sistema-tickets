@@ -1,4 +1,4 @@
-import { RolesTableProps, RolesView } from "./types";
+import { Roles, RolesTableProps, RolesView } from "./types";
 import styles from "./RolesTable.module.scss";
 import classNames from "classnames";
 import { TableHeader } from "../../molecules/TableHeader";
@@ -9,43 +9,58 @@ import { IconButton } from "../../atoms/IconButton";
 import { useState } from "react";
 import RolesForm from "../RolesForm/RolesForm";
 import { Button } from "../../atoms/Button";
+import { ModalContent } from "../../molecules/ModalContent";
 
 const GRID = "minmax(0, 1fr) minmax(0, 1.8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)";
 
-const testPermissions = [
-    {
-        id: 1,
-        name: 'Permiso 1',
-        description: 'Descripcion del permiso si es demasiado largo debera ser cortada',
-        grabar: true,
-        editar: false,
-        eliminar: true,
-        ver: true
-    },
-    {
-        id: 2,
-        name: 'Permiso 2',
-        description: 'Descripcion del permiso si es demasiado largo debera ser cortada',
-        grabar: false,
-        editar: true,
-        eliminar: false,
-        ver: true
-    }
-];
-
 const RolesTable: React.FC<RolesTableProps> = ({
     roles,
+    permissions,
+    onSubmit,
+    onEdit,
+    onDelete,
     className
 }) => {
 
     const [view, setView] = useState<RolesView>("table");
+    const [selectedRole, setSelectedRole] = useState<Roles | null>(null);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedDelete, setSelectedDelete] = useState<number>(0);
+
 
     if (view === "create") {
         return (
             <RolesForm 
-                permissions={testPermissions}
+                permissions={permissions}
                 onCancel={() => setView("table")}
-                onSubmit={() => alert("Guardar")}
+                onSubmit={(data) => {
+                    onSubmit?.(data);
+                    setView("table");
+                }}
+            />
+        );
+    }
+
+    if (view === "edit") {
+        return (
+            <RolesForm
+                initialData={selectedRole}
+                permissions={permissions}
+                onCancel={() => setView("table")}
+                onSubmit={(data) => {
+                    
+                    if (!selectedRole) return;
+
+                    const payload = {
+                        ...selectedRole,
+                        ...data
+                    };
+
+                    onEdit?.(payload);
+
+                    setView("table");
+
+                }}
             />
         );
     }
@@ -99,8 +114,22 @@ const RolesTable: React.FC<RolesTableProps> = ({
                             { 
                                 content: (
                                     <div>
-                                        <IconButton icon="trash-solid" />
-                                        <IconButton icon="file-pen-solid" />
+                                        <IconButton 
+                                            icon="file-pen-solid" 
+                                            iconColor="#8A8A8A"
+                                            onClick={() => {
+                                                setSelectedRole(rol);
+                                                setView("edit");
+                                            }}
+                                        />
+                                        <IconButton 
+                                            icon="trash-solid" 
+                                            iconColor="#8A8A8A"
+                                            onClick={() => {
+                                                setModalOpen(true);
+                                                setSelectedDelete(rol.id);
+                                            }}
+                                        />
                                     </div>
                                 ), 
                                 align: "center"
@@ -108,6 +137,17 @@ const RolesTable: React.FC<RolesTableProps> = ({
                         ]}
                     />
                 ))}
+
+                <ModalContent 
+                    isOpen={modalOpen}
+                    onClose={() => setModalOpen(false)}
+                    onConfirm={() => {
+                        onDelete?.(selectedDelete);
+                        setModalOpen(false);
+                    }}
+                    title="¿Estas seguro de querer eliminar este rol?"
+                    description="Esta acción no se podrá revertir"
+                />
 
             </div>
         </div>
