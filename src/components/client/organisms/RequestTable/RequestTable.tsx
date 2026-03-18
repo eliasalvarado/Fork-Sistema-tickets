@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Request, RequestTableProps } from "./types";
+import { RequestTableProps } from "./types";
 import styles from "./RequestTable.module.scss";
 import { TableHeader } from "../../molecules/TableHeader";
 import { TableRow } from "../../molecules/TableRow";
@@ -8,11 +8,13 @@ import { Avatar } from "../../atoms/Avatar";
 import { Text } from "../../atoms/Text";
 import { Chip } from "../../atoms/Chip";
 import { IconButton } from "../../atoms/IconButton";
+import { Button } from "../../atoms/Button";
 
 const GRID = "minmax(0, 1.8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr)";
 
 const RequestTable: React.FC<RequestTableProps> = ({
     requests,
+    onApproveAll,
     onApprove,
     className
 }) => {
@@ -31,17 +33,29 @@ const RequestTable: React.FC<RequestTableProps> = ({
         );
     };
 
-    const handleApprove = () => {
-        onApprove?.(selected);
+    const handleApproveAll = () => {
+        onApproveAll?.(selected);
+    };
+
+    const handleApprove = (id: number) => {
+        onApprove?.(id)
     };
 
     return (
         <div className={classNames(styles.RequestTable, className)}>
 
-            <TableHeader 
-                iconName="user-clock-solid"
-                label="Solicitudes pendientes"
-            />
+            <div className={styles.header}>
+
+                <TableHeader 
+                    iconName="user-clock-solid"
+                    label="Solicitudes pendientes"
+                />
+
+                <Button onClick={handleApproveAll}>
+                    Aprobar y notificar
+                </Button>
+
+            </div>
 
             <div className={styles.table}>
 
@@ -92,18 +106,20 @@ const RequestTable: React.FC<RequestTableProps> = ({
                                 ),
                                 align: "center"
                             },
-                            { content: <IconButton icon="paper-plane-solid" />, align: "center"}
+                            { 
+                                content: (
+                                    <IconButton 
+                                        icon="paper-plane-solid"
+                                        iconColor="#8A8A8A"
+                                        onClick={() => handleApprove(req.id)}  
+                                    />
+                                ),
+                                align: "center"
+                            }
                         ]}
                     />
                 ))}
 
-            </div>
-
-            <div className={styles.actions}>
-                <IconButton 
-                    icon="check"
-                    onClick={handleApprove}
-                />
             </div>
 
         </div>

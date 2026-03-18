@@ -8,12 +8,14 @@ import { Avatar } from "../../atoms/Avatar";
 import { Text } from "../../atoms/Text";
 import { Chip } from "../../atoms/Chip";
 import { IconButton } from "../../atoms/IconButton";
+import { Button } from "../../atoms/Button";
 
 const GRID = "minmax(0, 1.8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr)";
 
 const EnrollTable: React.FC<EnrollTableProps> = ({
     enroll,
     onApprove,
+    onApproveAll,
     className
 }) => {
 
@@ -31,17 +33,29 @@ const EnrollTable: React.FC<EnrollTableProps> = ({
         );
     };
 
-    const handleApprove = () => {
-        onApprove?.(selected);
-    }
+    const handleApproveAll = () => {
+        onApproveAll?.(selected);
+    };
+
+    const handleApprove = (id: number) => {
+        onApprove?.(id);
+    };
 
     return (
         <div className={classNames(styles.EnrollTable, className)}>
 
-            <TableHeader 
-                label="Asignar permisos"
-                iconName="id-badge-solid"
-            />
+            <div className={styles.header}>
+
+                <TableHeader 
+                    label="Asignar permisos"
+                    iconName="id-badge-solid"
+                />
+
+                <Button onClick={handleApproveAll}>
+                    Asignar seleccionados
+                </Button>
+
+            </div>
 
             <div className={styles.table}>
 
@@ -90,7 +104,16 @@ const EnrollTable: React.FC<EnrollTableProps> = ({
                                 ),
                                 align: "center"
                             },
-                            { content: <IconButton icon="paper-plane-solid" />, align: "center" }
+                            { 
+                                content: (
+                                    <IconButton 
+                                        icon="paper-plane-solid"
+                                        iconColor="#8A8A8A"
+                                        onClick={() => handleApprove(en.id)}
+                                    />
+                                ), 
+                                align: "center" 
+                            }
                         ]}
                     />
                 ))}

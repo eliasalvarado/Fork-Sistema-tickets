@@ -1,11 +1,10 @@
-export interface Modules {
-    id: number;
-    name: string;
-};
+import { Modules } from "../ModulesTable/types";
+import { Permissions } from "../PermissionsTable/types";
 
 export interface PermissionsFormProps {
     modules: Modules[];
-    onSubmit?: () => void;
+    initialData?: Permissions | null;
+    onSubmit?: (data: {module: number; name: string; code: string; description: string;}) => void;
     onCancel?: () => void;
     className?: string;
 }
