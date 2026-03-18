@@ -16,7 +16,7 @@ export const SideBarNavigation = ({
     return (
         <aside className={classNames(styles.sidebar, className)}>
             <div className={styles.logoSection}>
-                <IconButton icon="ticket-solid" size={40} onClick={() => onNavigate("/home")} borderless />
+                <IconButton icon="ticket-solid" size={40} onClick={() => onNavigate("/home")} borderless iconColor="#FFFFFF" />
             </div>
 
             <nav className={styles.navContainer}>
@@ -28,7 +28,7 @@ export const SideBarNavigation = ({
                                 key={item.path}
                                 iconName={item.iconName}
                                 label={item.label}
-                                active={isActive} // 👈 Pasamos el nuevo cálculo
+                                active={isActive}
                                 onClick={() => onNavigate(item.path)}
                             />
                         );
